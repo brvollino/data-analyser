@@ -1,0 +1,8 @@
+description = "Data analyser core"
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter'
+    compile 'com.google.guava:guava'
+
+    testCompile 'org.springframework.boot:spring-boot-starter-test'
+}

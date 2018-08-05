@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    }
+}
+
+description = "Data analyser"
+
+allprojects {
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+
+    group = 'com.vollino.data.analyser'
+    version = '0.1.0-SNAPSHOT'
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    apply plugin: "io.spring.dependency-management"
+    apply from: '../java.gradle'
+
+    dependencyManagement {
+        imports {
+            mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Edgware.SR2'
+            mavenBom 'org.springframework.boot:spring-boot-dependencies:1.5.10.RELEASE'
+        }
+        dependencies {
+            dependency 'com.google.guava:guava:23.0'
+            dependency 'com.h2database:h2:1.4.197'
+
+            dependency 'junit:junit:4.12'
+            dependency 'org.hamcrest:java-hamcrest:2.0.0.0'
+            dependency 'org.mockito:mockito-core:1.10.19'
+            dependency 'eu.codearte.catch-exception:catch-exception:1.4.4'
+        }
+    }
+}
