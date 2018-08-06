@@ -5,12 +5,14 @@ This program is a simple data processor and analyzer for *.dat formats in a CSV 
 ## Input
 Here goes an example file of the application input, which may contain 3 types of registry.
 
+```
 001ç1234567891234çDiegoç50000
 001ç3245678865434çRenatoç40000.99
 002ç2345675434544345çJose da SilvaçRural
 002ç2345675433444345çEduardo PereiraçRural
 003ç10ç[1-10-100,2-30-2.50,3-40-3.10]çDiego
 003ç08ç[1-34-10,2-33-1.50,3-40-0.10]çRenato
+```
 
 Salesman:
 001çCPFçNameçSalary
