@@ -4,4 +4,14 @@ data:
     directory: data/in
   out:
     directory: data/out
-    file: summary.dat
+    file: summary.done.dat
+
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+    username: sa
+    password: sa
+  jpa:
+    hibernate:
+      ddl-auto: validate

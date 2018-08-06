@@ -7,4 +7,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author Bruno Vollino
  */
 public interface SaleRepository extends CrudRepository<Sale, Long> {
+
+    Sale findFirstByOrderByTotalValueDesc();
 }

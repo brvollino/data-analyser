@@ -41,6 +41,7 @@ subprojects {
             dependency 'com.h2database:h2:1.4.197'
             dependency 'org.apache.camel:camel-spring-boot:2.22.0'
             dependency 'org.apache.camel:camel-csv:2.22.0'
+            dependency 'org.flywaydb:flyway-core:5.1.4'
 
             dependency 'junit:junit:4.12'
             dependency 'org.hamcrest:java-hamcrest:2.0.0.0'

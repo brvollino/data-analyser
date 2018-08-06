@@ -2,42 +2,38 @@ package com.vollino.data.analyser.core.model;
 
 import com.google.common.base.MoreObjects;
 
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
  * @author Bruno Vollino
  */
+@Entity(name = "sale_item")
 public class SaleItem {
-    private Long saleId;
-    private Long itemId;
+
+    @EmbeddedId
+    private SaleItemId id;
     private Integer quantity;
     private BigDecimal unitPrice;
 
     public SaleItem() {
     }
 
-    public SaleItem(Long saleId, Long itemId, Integer quantity, BigDecimal unitPrice) {
-        this.saleId = saleId;
-        this.itemId = itemId;
+    public SaleItem(SaleItemId id, Integer quantity, BigDecimal unitPrice) {
+        this.id = id;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
 
-    public Long getSaleId() {
-        return saleId;
+    public SaleItemId getId() {
+        return id;
     }
 
-    public void setSaleId(Long saleId) {
-        this.saleId = saleId;
-    }
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setId(SaleItemId id) {
+        this.id = id;
     }
 
     public Integer getQuantity() {
@@ -61,22 +57,20 @@ public class SaleItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SaleItem saleItem = (SaleItem) o;
-        return Objects.equals(getSaleId(), saleItem.getSaleId()) &&
-                Objects.equals(getItemId(), saleItem.getItemId()) &&
+        return Objects.equals(getId(), saleItem.getId()) &&
                 Objects.equals(getQuantity(), saleItem.getQuantity()) &&
                 Objects.equals(getUnitPrice(), saleItem.getUnitPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSaleId(), getItemId(), getQuantity(), getUnitPrice());
+        return Objects.hash(getId(), getQuantity(), getUnitPrice());
     }
 
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
-                .add("saleId", saleId)
-                .add("itemId", itemId)
+                .add("id", id)
                 .add("quantity", quantity)
                 .add("unitPrice", unitPrice)
                 .toString();

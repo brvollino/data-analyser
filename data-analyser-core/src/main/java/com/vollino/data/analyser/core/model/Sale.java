@@ -2,6 +2,7 @@ package com.vollino.data.analyser.core.model;
 
 import com.google.common.base.MoreObjects;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
@@ -9,10 +10,17 @@ import java.util.Objects;
 /**
  * @author Bruno Vollino
  */
+@Entity(name = "sale")
 public class Sale {
+
+    @Id
     private Long id;
+    @Column(name = "salesman_name")
     private String salesmanName;
+    @Column(name = "total_value")
     private BigDecimal totalValue;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "sale_id")
     private List<SaleItem> saleItems;
 
     public Long getId() {

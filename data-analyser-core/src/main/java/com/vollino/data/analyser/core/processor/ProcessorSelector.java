@@ -19,6 +19,7 @@ public class ProcessorSelector {
     private List<RegistryProcessor> registryProcessors;
 
     public void consume(List<String> registry) {
+        LOGGER.info("Processing " + registry);
         RegistryProcessor processor = registryProcessors.stream()
                 .filter(p -> p.accepts(registry))
                 .findFirst()

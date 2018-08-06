@@ -1,9 +1,9 @@
 package com.vollino.data.analyser.core.processor;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Streams;
 import com.vollino.data.analyser.core.model.Sale;
 import com.vollino.data.analyser.core.model.SaleItem;
+import com.vollino.data.analyser.core.model.SaleItemId;
 import com.vollino.data.analyser.core.repository.SaleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,6 +39,9 @@ public class SaleProcessor implements RegistryProcessor {
 
     @Override
     public void consume(List<String> registry) {
+        Preconditions.checkArgument(registry.size() == 4,
+                "Sale registry should have 4 columns: " + registry);
+
         Sale sale = new Sale();
         sale.setId(Long.parseLong(registry.get(1)));
 
@@ -58,14 +61,13 @@ public class SaleProcessor implements RegistryProcessor {
         Preconditions.checkArgument(SALE_LIST_PATTERN.matcher(saleItemList).matches(),
                 "Invalid sale item list: " + saleItemList);
 
-        return Arrays.stream(saleItemList.substring(1, saleItemList.length()-1).split(","))
+        return Arrays.stream(saleItemList.substring(1, saleItemList.length() - 1).split(","))
                 .map(item -> {
                     Matcher matcher = SALE_ITEM_PATTERN.matcher(item);
                     Preconditions.checkArgument(matcher.matches(),
                             "Invalid sale item list: " + saleItemList);
                     SaleItem saleItem = new SaleItem();
-                    saleItem.setSaleId(saleId);
-                    saleItem.setItemId(Long.parseLong(matcher.group(1)));
+                    saleItem.setId(new SaleItemId(saleId, Long.parseLong(matcher.group(1))));
                     saleItem.setQuantity(Integer.parseInt(matcher.group(2)));
                     saleItem.setUnitPrice(new BigDecimal(matcher.group(3)).setScale(2));
 

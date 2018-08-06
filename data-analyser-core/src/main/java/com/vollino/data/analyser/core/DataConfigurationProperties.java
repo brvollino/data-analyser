@@ -3,7 +3,6 @@ package com.vollino.data.analyser.core;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -11,7 +10,6 @@ import java.nio.file.Paths;
  * @author Bruno Vollino
  */
 @Configuration
-
 public class DataConfigurationProperties {
 
     @Value("${data.working-dir-property}")
