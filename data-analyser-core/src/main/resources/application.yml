@@ -1,0 +1,7 @@
+data:
+  working-dir-property: user.home
+  in:
+    directory: data/in
+  out:
+    directory: data/out
+    file: summary.dat

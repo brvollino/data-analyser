@@ -1,0 +1,7 @@
+data:
+  working-dir-property: java.io.tmpdir
+  in:
+    directory: data/in
+  out:
+    directory: data/out
+    file: summary.dat
